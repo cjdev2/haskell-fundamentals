@@ -9,7 +9,7 @@ Learning project for haskell
 - git init
 - git add --all
 - git commit -m "Created haskell-fundamentals project"
-- git remote add origin git@gitlab.cj.com:sshubin/haskell-fundamentals.git
+- git remote add origin git@gitlab.cj.com:cjdev/haskell-fundamentals.git
 - git push -u origin master
 
 ## How to launch a particular entry point from the command line
