@@ -12,7 +12,7 @@ Learning project for haskell
 - git remote add origin git@gitlab.cj.com:sshubin/haskell-fundamentals.git
 - git push -u origin master
 
-## How to launch a particualr entry point from the command line
+## How to launch a particular entry point from the command line
 - choose in entry point to run, for example
     - src/HelloAlice.hs
 - run it as a script, like so

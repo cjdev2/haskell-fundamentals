@@ -15,11 +15,11 @@ searchForUserNamed name =
 
 searchAndDisplayResultAsString :: [Char] -> [Char]
 searchAndDisplayResultAsString name = 
-    let searchResult = searchForUserNamed name in
-        case searchResult of
-            (Just (User _ password)) -> "found user " ++ name ++ " with password " ++ password
-            Nothing -> "did not find user " ++ name
-  
+    case searchResult of
+        (Just (User _ password)) -> "found user " ++ name ++ " with password " ++ password
+        Nothing -> "did not find user " ++ name
+    where searchResult = searchForUserNamed name
+            
 spec :: Spec
 spec = do
     it "find user by name" $ do
