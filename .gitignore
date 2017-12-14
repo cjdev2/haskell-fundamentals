@@ -1,3 +1,5 @@
 .stack-work/
 haskell-fundamentals.cabal
 *~
+.DS_Store
+
