@@ -2,6 +2,8 @@ module CollectionSpec where
     
 import Test.Hspec
 
+import qualified Data.Map as Map
+
 spec :: Spec
 spec = do
     it "list operations" $ do
@@ -29,3 +31,12 @@ spec = do
 
         -- add to end
         a ++ ['z'] `shouldBe` "abcz"
+
+    it "map operations" $ do
+        let a = Map.fromList [(1, "a"), (2, "b"), (3, "c")]
+        Map.size a `shouldBe` 3
+        Map.member 2 a `shouldBe` True
+        Map.lookup 2 a `shouldBe` (Just "b")  
+        Map.findWithDefault "not there" 2 a `shouldBe` "b"
+        Map.insert 4 "d" a `shouldBe` Map.fromList [(1, "a"), (2, "b"), (3, "c"), (4, "d")]
+        
