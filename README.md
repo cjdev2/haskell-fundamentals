@@ -24,6 +24,7 @@ stack test --file-watch
 ## Fundamentals explained through sample code
 - [Functions](test/FunctionSpec.hs)
 - [Data](test/DataSpec.hs)
+- [Collection](test/CollectionSpec.hs)
 - [Tuples](test/TuplesSpec.hs)
 - [Flow Control](test/FlowControlSpec.hs)
 - [List Comprehension](test/ListComprehensionSpec.hs)
