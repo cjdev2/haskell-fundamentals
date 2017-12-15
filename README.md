@@ -20,3 +20,18 @@ Learning project for haskell
 
 ## How to set up test monitoring
 stack test --file-watch
+
+## Fundamentals explained through sample code
+- [Functions](test/FunctionSpec.hs)
+- [Data](test/DataSpec.hs)
+- [Tuples](test/TupleSpec.hs)
+- [Flow Control](test/FlowControlSpec.hs)
+- [List Comprehension](test/ListComprehensionSpec.hs)
+- [Maybe](test/MaybeSpec.hs)
+- Functor
+- Applicitive
+- Monad
+- Monoid
+- Parser Combinators
+- Either
+- Validation
