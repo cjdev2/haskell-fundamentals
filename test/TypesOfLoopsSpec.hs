@@ -37,8 +37,8 @@ addAlias builder alias =
   let ColorAliasBuilder currentColor colorAliases = builder
       oldColorAliasList = Map.findWithDefault [] currentColor colorAliases 
       newColorAliasList = oldColorAliasList ++ [alias] 
-      newColorAliases = Map.insert alias newColorAliasList colorAliases in
-  ColorAliasBuilder currentColor colorAliases
+      newColorAliases = Map.insert currentColor newColorAliasList colorAliases in
+  ColorAliasBuilder currentColor newColorAliases
 
 updateBuilderWithLine :: ColorAliasBuilder -> [Char] -> ColorAliasBuilder
 updateBuilderWithLine builder (' ' : ' ' : ' ' : ' ' : colorAlias) = addAlias builder colorAlias
@@ -61,13 +61,8 @@ spec = do
         let redScarletMap = Map.fromList [("red", ["scarlet"])]
         Map.findWithDefault [] "red" redScarletMap `shouldBe` ["scarlet"]
 
-    -- -- Ambiguous type variable ‘t0’ arising from a use of ‘shouldBe’
-    -- it "find with default when not present" $ do
-    --     Map.findWithDefault [] "red" Map.empty `shouldBe` []
-
-    -- -- Data constructor not in scope
-    -- it "find with default when not present" $ do
-    --     Map.findWithDefault ([]:[[Char]]) ("red":[Char]) (Map.empty:AliasMap) `shouldBe` ([]:[[Char]])
+    it "find with default when not present" $ do
+        Map.findWithDefault [] "red" (Map.empty::AliasMap) `shouldBe` []
 
     it "insert into map" $ do
         let result = Map.insert "red" ["scarlet"] Map.empty
