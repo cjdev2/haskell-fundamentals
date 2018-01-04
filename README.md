@@ -29,6 +29,7 @@ stack test --file-watch
 - [Flow Control](test/FlowControlSpec.hs)
 - [List Comprehension](test/ListComprehensionSpec.hs)
 - [Maybe](test/MaybeSpec.hs)
+- [Fold and Tail Recursion](test/TypesOfLoopsSpec.hs)
 - Functor
 - Applicitive
 - Monad

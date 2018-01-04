@@ -36,7 +36,9 @@ spec = do
         let sampleMap = Map.fromList [(1, "a"), (2, "b"), (3, "c")]
         Map.size sampleMap `shouldBe` 3
         Map.member 2 sampleMap `shouldBe` True
+        Map.member 4 sampleMap `shouldBe` False
         Map.lookup 2 sampleMap `shouldBe` (Just "b")  
+        Map.lookup 4 sampleMap `shouldBe` Nothing  
         Map.findWithDefault "not there" 2 sampleMap `shouldBe` "b"
         Map.findWithDefault "not there" 4 sampleMap `shouldBe` "not there"
         Map.insert 4 "d" sampleMap `shouldBe` Map.fromList [(1, "a"), (2, "b"), (3, "c"), (4, "d")]

@@ -44,8 +44,24 @@ updateBuilderWithLine :: ColorAliasBuilder -> [Char] -> ColorAliasBuilder
 updateBuilderWithLine builder (' ' : ' ' : ' ' : ' ' : colorAlias) = addAlias builder colorAlias
 updateBuilderWithLine builder colorName = setCurrentColor builder colorName
 
-buildColorAliasMap::[[Char]] -> AliasMap
-buildColorAliasMap lines = colorAliases $ foldl updateBuilderWithLine emptyBuilder lines
+foldColorAliasMap::[[Char]] -> AliasMap
+foldColorAliasMap lines = colorAliases $ foldl updateBuilderWithLine emptyBuilder lines
+
+addRemainingLines::AliasMap -> [Char] -> [[Char]] -> AliasMap
+addRemainingLines colorAliases currentColor remainingLines = 
+    case remainingLines of 
+        currentLine : newRemainingLines ->
+            case currentLine of
+                (' ' : ' ' : ' ' : ' ' : alias) ->
+                    let oldColorAliasList = Map.findWithDefault [] currentColor colorAliases 
+                        newColorAliasList = oldColorAliasList ++ [alias]
+                        newColorAliases = Map.insert currentColor newColorAliasList colorAliases in
+                    addRemainingLines newColorAliases currentColor newRemainingLines
+                newColor -> addRemainingLines colorAliases newColor newRemainingLines
+        _ -> colorAliases
+
+recurseColorAliasMap::[[Char]] -> AliasMap
+recurseColorAliasMap lines = addRemainingLines Map.empty emptyColor lines
 
 spec :: Spec
 spec = do
@@ -67,8 +83,14 @@ spec = do
         (updateBuilderWithLine emptyBuilder "red") `shouldBe` ColorAliasBuilder "red" (Map.fromList [])
         (updateBuilderWithLine (ColorAliasBuilder "red" (Map.fromList [])) "    scarlet") `shouldBe` ColorAliasBuilder "red" (Map.fromList [("red", ["scarlet"])])
     
-    it "fold with builder" $ do
-        (buildColorAliasMap sampleLines) `shouldBe` Map.fromList[
+    it "fold color alias map" $ do
+        (foldColorAliasMap sampleLines) `shouldBe` Map.fromList[
+            ("red", ["scarlet", "ruby", "flame"]),
+            ("green", ["jade", "forest", "mint"]),
+            ("blue", ["turquoise", "azure", "sapphire"])]
+
+    it "recurse color alias map" $ do
+        (recurseColorAliasMap sampleLines) `shouldBe` Map.fromList[
             ("red", ["scarlet", "ruby", "flame"]),
             ("green", ["jade", "forest", "mint"]),
             ("blue", ["turquoise", "azure", "sapphire"])]

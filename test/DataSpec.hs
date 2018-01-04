@@ -38,12 +38,16 @@ spec = do
         let g = a == e
         let h = a == f
         let i = a { y = 5 }
+        let j = x a
+        let k = y a
         b `shouldBe` 1
         c `shouldBe` 2
         d `shouldBe` "PointWithNamedFields {x = 1, y = 2}"
         g `shouldBe` True
         h `shouldBe` False
         i `shouldBe` PointWithNamedFields 1 5
+        j `shouldBe` 1
+        k `shouldBe` 2
     
     it "nested data" $ do
         let a = Rectangle (Point 1 2) (Point 3 4)
