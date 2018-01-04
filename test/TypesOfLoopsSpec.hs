@@ -57,17 +57,6 @@ spec = do
         let builder = setCurrentColor emptyBuilder "red"
         currentColor builder `shouldBe` "red"
 
-    it "find with default when present" $ do
-        let redScarletMap = Map.fromList [("red", ["scarlet"])]
-        Map.findWithDefault [] "red" redScarletMap `shouldBe` ["scarlet"]
-
-    it "find with default when not present" $ do
-        Map.findWithDefault [] "red" (Map.empty::AliasMap) `shouldBe` []
-
-    it "insert into map" $ do
-        let result = Map.insert "red" ["scarlet"] Map.empty
-        result `shouldBe` Map.fromList [("red", ["scarlet"])]
-
     it "add alias" $ do
         let redBuilder = ColorAliasBuilder "red" Map.empty
         let redScarletMap = Map.fromList [("red", ["scarlet"])]
