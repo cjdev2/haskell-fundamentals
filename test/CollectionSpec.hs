@@ -33,10 +33,11 @@ spec = do
         a ++ ['z'] `shouldBe` "abcz"
 
     it "map operations" $ do
-        let a = Map.fromList [(1, "a"), (2, "b"), (3, "c")]
-        Map.size a `shouldBe` 3
-        Map.member 2 a `shouldBe` True
-        Map.lookup 2 a `shouldBe` (Just "b")  
-        Map.findWithDefault "not there" 2 a `shouldBe` "b"
-        Map.insert 4 "d" a `shouldBe` Map.fromList [(1, "a"), (2, "b"), (3, "c"), (4, "d")]
-        
+        let sampleMap = Map.fromList [(1, "a"), (2, "b"), (3, "c")]
+        Map.size sampleMap `shouldBe` 3
+        Map.member 2 sampleMap `shouldBe` True
+        Map.lookup 2 sampleMap `shouldBe` (Just "b")  
+        Map.findWithDefault "not there" 2 sampleMap `shouldBe` "b"
+        Map.findWithDefault "not there" 4 sampleMap `shouldBe` "not there"
+        Map.insert 4 "d" sampleMap `shouldBe` Map.fromList [(1, "a"), (2, "b"), (3, "c"), (4, "d")]
+    
