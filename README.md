@@ -30,6 +30,8 @@ stack test --file-watch
 - [List Comprehension](test/ListComprehensionSpec.hs)
 - [Maybe](test/MaybeSpec.hs)
 - [Fold and Tail Recursion](test/TypesOfLoopsSpec.hs)
+- Test with freer
+- Test with mtl
 - Functor
 - Applicitive
 - Monad
