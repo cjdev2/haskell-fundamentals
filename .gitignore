@@ -2,4 +2,5 @@
 haskell-fundamentals.cabal
 *~
 .DS_Store
+.vscode
 

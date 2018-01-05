@@ -39,3 +39,8 @@ stack test --file-watch
 - Parser Combinators
 - Either
 - Validation
+- Laziness
+
+## Todo
+- convert to 2 space indent
+- collapse multiple let statements into one

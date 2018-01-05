@@ -1,5 +1,5 @@
 module FunctionSpec where
-    
+
 import Test.Hspec
 
 buildNum :: Int -> Int -> Int -> Int
@@ -17,11 +17,18 @@ buildNumFromReversedList (x: xs) = x + 10 * buildNumFromReversedList xs
 
 spec :: Spec
 spec = do
-    it "functions are automatically curried" $ do
-        buildNum 1 2 3 `shouldBe` 123
+  it "functions are automatically curried" $ do
+    buildNum 1 2 3 `shouldBe` 123
 
-    it "getting values from a tuple" $ do
-        buildNumFromTuple (1, 2, 3) `shouldBe` 123
-        
-    it "getting values from a list" $ do
-        buildNumFromList [1, 2 ,3] `shouldBe` 123
+  it "getting values from a tuple" $ do
+    buildNumFromTuple (1, 2, 3) `shouldBe` 123
+
+  it "getting values from a list" $ do
+    buildNumFromList [1, 2, 3] `shouldBe` 123
+
+  it "different ways to define functions" $ do
+    let myNumbers = [1,2]
+        timesTwo x = x * 2
+    map timesTwo myNumbers `shouldBe` [2,4]
+    map (\x -> x * 2) myNumbers `shouldBe` [2,4]
+    map (* 2) myNumbers `shouldBe` [2,4]
