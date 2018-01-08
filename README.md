@@ -40,3 +40,11 @@ stack test --file-watch
 - Either
 - Validation
 - Laziness
+
+## Some possible settings for Visual Studio Code
+    {
+      "window.zoomLevel": 2,
+      "editor.tabSize": 2,
+      "editor.detectIndentation": false,
+      "files.trimTrailingWhitespace": true
+    }
