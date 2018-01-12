@@ -1,4 +1,11 @@
-module MaintainableCode.Test.Stubs where
+{-# LANGUAGE DataKinds #-}
+{-# LANGUAGE ExplicitNamespaces #-}
+{-# LANGUAGE GADTs #-}
+{-# LANGUAGE LambdaCase #-}
+{-# LANGUAGE RankNTypes #-}
+{-# LANGUAGE TypeOperators #-}
+
+module Maintainability.Freer.Stubs where
 
 import qualified Data.Text as T
 
@@ -9,20 +16,20 @@ import Control.Natural (type (~>))
 import Data.Text (Text)
 import Data.Time.Clock (NominalDiffTime, UTCTime, addUTCTime)
 
-import MaintainableCode.Effects
+import Maintainability.Freer.Effects
 
 --------------------------------------------------------------------------------
 -- Simple effects
 
 runArgumentsPure :: [Text] -> Eff (Arguments ': effs) ~> Eff effs
 runArgumentsPure args = interpret $ \case
-    GetArgs -> pure args
+  GetArgs -> pure args
 
 runFileSystemPure :: [(Text, Text)] -> Eff (FileSystem ': effs) ~> Eff effs
 runFileSystemPure fs = interpret $ \case
-    ReadFile path ->
+  ReadFile path ->
     maybe (fail $ "readFile: no such file ‘" ++ T.unpack path ++ "’")
-            pure (lookup path fs)
+          pure (lookup path fs)
 
 runLogPure :: Eff (Log ': effs) a -> Eff effs (a, [Text])
 runLogPure = runWriter . reinterpret (\case
@@ -32,17 +39,17 @@ runLogPure = runWriter . reinterpret (\case
 -- Time
 
 data ClockState
-    = ClockStopped !UTCTime
-    | ClockTick !UTCTime ClockState
-    | ClockEndOfTime
-    deriving (Eq, Show)
+  = ClockStopped !UTCTime
+  | ClockTick !UTCTime ClockState
+  | ClockEndOfTime
+  deriving (Eq, Show)
 
 runClockPure :: ClockState -> Eff (Time ': effs) ~> Eff effs
-runClockPure initialState action = evalState (handle action) initialState
-    where
+runClockPure initialState action = evalState initialState (handle action)
+  where
     handle :: Eff (Time ': effs) ~> Eff (State ClockState ': effs)
     handle = reinterpret $ \case
-        CurrentTime -> get >>= \case
+      CurrentTime -> get >>= \case
         ClockStopped t -> pure t
         ClockTick t s -> put s >> pure t
         ClockEndOfTime -> fail "currentTime: end of time"
@@ -60,7 +67,7 @@ runTickingClockPure = runTickingClockPure' 1
 -- time the time is read.
 runTickingClockPure' :: NominalDiffTime -> UTCTime -> Eff (Time ': effs) ~> Eff effs
 runTickingClockPure' d t = runClockPure (ticks t)
-    where ticks t' = ClockTick t' (ticks (addUTCTime d t'))
+  where ticks t' = ClockTick t' (ticks (addUTCTime d t'))
 
 -- | Runs a computation with a clock that replays the provided list of times, in
 -- order. If the time list of times is exhausted, 'currentTime' will throw an

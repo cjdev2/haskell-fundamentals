@@ -1,12 +1,14 @@
-module MaintainableCode.MainSpec where
+{-# LANGUAGE OverloadedStrings #-}
+
+module Maintainability.Freer.MainSpec where
 
 import Control.Monad.Freer (run)
 import Data.Function ((&))
 import Data.Time.Clock.POSIX (posixSecondsToUTCTime)
 import Test.Hspec
 
-import MaintainableCode.Main
-import MaintainableCode.Test.Stubs
+import Maintainability.Freer.Main
+import Maintainability.Freer.Stubs
 
 spec :: Spec
 spec = describe "main" $ do

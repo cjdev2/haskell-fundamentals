@@ -21,9 +21,18 @@ description:         Please see the README on Github at <https://github.com/gith
 
 dependencies:
 - base >= 4.7 && < 5
+- bytestring
 - either
 - containers
+- fast-logger
+- freer-simple
+- monad-logger
+- monad-time
+- mtl
+- natural-transformation
 - text
+- time
+- transformers
 
 library:
   source-dirs: src

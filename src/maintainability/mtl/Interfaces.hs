@@ -1,4 +1,7 @@
-module MaintainableCode.Interfaces
+{-# LANGUAGE DefaultSignatures #-}
+{-# LANGUAGE GADTs #-}
+
+module Maintainability.MTL.Interfaces
   ( MonadArguments(..)
   , MonadFileSystem(..)
   ) where

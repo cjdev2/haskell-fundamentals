@@ -1,12 +1,14 @@
-module MaintainableCode.MainSpec where
+{-# LANGUAGE OverloadedStrings #-}
+
+module Maintainability.MTL.MainSpec where
 
 import Data.Function ((&))
 import Data.Functor.Identity (runIdentity)
 import Data.Time.Clock.POSIX (posixSecondsToUTCTime)
 import Test.Hspec
 
-import MaintainableCode.Main
-import MaintainableCode.Test.Stubs
+import Maintainability.MTL.Main
+import Maintainability.MTL.Stubs
 
 spec :: Spec
 spec = describe "main" $ do

@@ -1,4 +1,7 @@
-module MaintainableCode.Main
+{-# LANGUAGE DataKinds #-}
+{-# LANGUAGE OverloadedStrings #-}
+
+module Maintainability.Freer.Main
   ( main
   , mainIO
   ) where
@@ -12,7 +15,7 @@ import Data.Function ((&))
 import Data.Semigroup ((<>))
 import Data.Time.Clock (diffUTCTime)
 
-import MaintainableCode.Effects
+import Maintainability.Freer.Effects
 
 --------------------------------------------------------------------------------
 -- IO wiring

@@ -1,4 +1,8 @@
-module MaintainableCode.Main
+{-# LANGUAGE DeriveFunctor #-}
+{-# LANGUAGE GeneralizedNewtypeDeriving #-}
+{-# LANGUAGE OverloadedStrings #-}
+
+module Maintainability.MTL.Main
   ( main
   , mainIO
   ) where
@@ -12,7 +16,7 @@ import Control.Monad.Logger (LoggingT, MonadLogger(..), logInfoN, runStderrLoggi
 import Data.Semigroup ((<>))
 import Data.Time.Clock (diffUTCTime)
 
-import MaintainableCode.Interfaces
+import Maintainability.MTL.Interfaces
 
 --------------------------------------------------------------------------------
 -- IO wiring

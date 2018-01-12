@@ -1,4 +1,11 @@
-module MaintainableCode.Effects
+{-# LANGUAGE DataKinds #-}
+{-# LANGUAGE ExplicitNamespaces #-}
+{-# LANGUAGE FlexibleContexts #-}
+{-# LANGUAGE GADTs #-}
+{-# LANGUAGE LambdaCase #-}
+{-# LANGUAGE TypeOperators #-}
+
+module Maintainability.Freer.Effects
   ( -- * Effects
     Arguments(..)
   , getArgs

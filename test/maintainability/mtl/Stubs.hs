@@ -1,4 +1,8 @@
-module MaintainableCode.Test.Stubs where
+{-# LANGUAGE DeriveFunctor #-}
+{-# LANGUAGE GeneralizedNewtypeDeriving #-}
+{-# LANGUAGE LambdaCase #-}
+
+module Maintainability.MTL.Stubs where
 
 import qualified Data.Text as T
 
@@ -13,7 +17,7 @@ import Data.Text (Text)
 import Data.Time.Clock (NominalDiffTime, UTCTime, addUTCTime)
 import System.Log.FastLogger (fromLogStr, toLogStr)
 
-import MaintainableCode.Interfaces
+import Maintainability.MTL.Interfaces
 
 --------------------------------------------------------------------------------
 -- Arguments

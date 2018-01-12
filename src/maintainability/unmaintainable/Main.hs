@@ -1,4 +1,6 @@
-module MaintainableCode.Main
+{-# LANGUAGE OverloadedStrings #-}
+
+module Maintainability.Unmaintainable.Main
   ( main
   ) where
 
