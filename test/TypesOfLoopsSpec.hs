@@ -4,7 +4,7 @@ import Test.Hspec
 import qualified Data.Map as Map
 import Data.List (foldl', stripPrefix)
 
-sampleLines :: [[Char]]
+sampleLines :: [String]
 sampleLines =
   [ "red"
   , "    scarlet"
@@ -20,26 +20,26 @@ sampleLines =
   , "    sapphire"
   ]
 
-type AliasMap = Map.Map [Char] [[Char]]
+type AliasMap = Map.Map String [String]
 
-emptyColor :: [Char]
+emptyColor :: String
 emptyColor = "<none>"
 
 --------------------------------------------------------------------------------
 -- Fold solution
 
 data ColorAliasBuilder = ColorAliasBuilder
-  { currentColor :: [Char]
+  { currentColor :: String
   , colorAliases :: AliasMap
   } deriving (Show, Eq)
 
 emptyBuilder :: ColorAliasBuilder
 emptyBuilder = ColorAliasBuilder emptyColor Map.empty
 
-setCurrentColor :: ColorAliasBuilder -> [Char] -> ColorAliasBuilder
+setCurrentColor :: ColorAliasBuilder -> String -> ColorAliasBuilder
 setCurrentColor builder color = builder { currentColor = color }
 
-addAlias :: ColorAliasBuilder -> [Char]  -> ColorAliasBuilder
+addAlias :: ColorAliasBuilder -> String  -> ColorAliasBuilder
 addAlias builder alias =
   let ColorAliasBuilder currentColor colorAliases = builder
       oldColorAliasList = Map.findWithDefault [] currentColor colorAliases
@@ -47,12 +47,12 @@ addAlias builder alias =
       newColorAliases = Map.insert currentColor newColorAliasList colorAliases
   in ColorAliasBuilder currentColor newColorAliases
 
-updateBuilderWithLine :: ColorAliasBuilder -> [Char] -> ColorAliasBuilder
+updateBuilderWithLine :: ColorAliasBuilder -> String -> ColorAliasBuilder
 updateBuilderWithLine builder currentLine = case stripPrefix "    " currentLine of
   Just colorAlias -> addAlias builder colorAlias
   Nothing -> setCurrentColor builder currentLine
 
-foldColorAliasMap :: [[Char]] -> AliasMap
+foldColorAliasMap :: [String] -> AliasMap
 -- Left folding over lists is always strict, so we should use foldl' instead of
 -- foldl to avoid space leaks. For more information see:
 -- https://wiki.haskell.org/Foldr_Foldl_Foldl%27
@@ -61,7 +61,7 @@ foldColorAliasMap lines = colorAliases $ foldl' updateBuilderWithLine emptyBuild
 --------------------------------------------------------------------------------
 -- Recursive solution
 
-addRemainingLines :: AliasMap -> [Char] -> [[Char]] -> AliasMap
+addRemainingLines :: AliasMap -> String -> [String] -> AliasMap
 addRemainingLines colorAliases currentColor remainingLines =
   case remainingLines of
     currentLine : newRemainingLines ->
@@ -74,7 +74,7 @@ addRemainingLines colorAliases currentColor remainingLines =
         Nothing -> addRemainingLines colorAliases currentLine newRemainingLines
     _ -> colorAliases
 
-recurseColorAliasMap :: [[Char]] -> AliasMap
+recurseColorAliasMap :: [String] -> AliasMap
 recurseColorAliasMap lines = addRemainingLines Map.empty emptyColor lines
 
 --------------------------------------------------------------------------------
