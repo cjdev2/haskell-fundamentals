@@ -27,7 +27,6 @@ stack test --file-watch
 - [Collection](test/CollectionSpec.hs)
 - [Tuples](test/TuplesSpec.hs)
 - [Flow Control](test/FlowControlSpec.hs)
-- [List Comprehension](test/ListComprehensionSpec.hs)
 - [Maybe](test/MaybeSpec.hs)
 - [Fold and Tail Recursion](test/TypesOfLoopsSpec.hs)
 - Test with freer
@@ -39,6 +38,7 @@ stack test --file-watch
 - Parser Combinators
 - Either
 - Validation
+- [List Comprehension](test/ListComprehensionSpec.hs)
 - Laziness
 
 ## Some possible settings for Visual Studio Code
