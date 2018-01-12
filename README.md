@@ -28,15 +28,15 @@ stack test --file-watch
 - [Tuples](test/TuplesSpec.hs)
 - [Flow Control](test/FlowControlSpec.hs)
 - [Maybe](test/MaybeSpec.hs)
+- Either
 - [Fold and Tail Recursion](test/TypesOfLoopsSpec.hs)
-- Test with freer — [test](test/Maintainability/Freer/MainSpec.hs), [stubs](test/Maintainability/Freer/Stubs.hs)
-- Test with mtl — [test](test/Maintainability/MTL/MainSpec.hs), [stubs](test/Maintainability/MTL/Stubs.hs)
 - Functor
 - Applicative
 - Monad
 - Monoid
+- Test with freer — [test](test/Maintainability/Freer/MainSpec.hs), [stubs](test/Maintainability/Freer/Stubs.hs)
+- Test with mtl — [test](test/Maintainability/MTL/MainSpec.hs), [stubs](test/Maintainability/MTL/Stubs.hs)
 - Parser Combinators
-- Either
 - Validation
 - [List Comprehension](test/ListComprehensionSpec.hs)
 - Laziness
