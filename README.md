@@ -29,8 +29,8 @@ stack test --file-watch
 - [Flow Control](test/FlowControlSpec.hs)
 - [Maybe](test/MaybeSpec.hs)
 - [Fold and Tail Recursion](test/TypesOfLoopsSpec.hs)
-- Test with freer
-- Test with mtl
+- Test with freer — [test](test/Maintainability/Freer/MainSpec.hs), [stubs](test/Maintainability/Freer/Stubs.hs)
+- Test with mtl — [test](test/Maintainability/MTL/MainSpec.hs), [stubs](test/Maintainability/MTL/Stubs.hs)
 - Functor
 - Applicative
 - Monad
