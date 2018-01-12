@@ -32,7 +32,7 @@ stack test --file-watch
 - Test with freer
 - Test with mtl
 - Functor
-- Applicitive
+- Applicative
 - Monad
 - Monoid
 - Parser Combinators
