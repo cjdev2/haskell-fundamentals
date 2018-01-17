@@ -1,7 +1,7 @@
 module MonadSpec where
 
 import Control.Monad (join)
-import Control.Monad.State (State, get, put, runState)
+import Control.Monad.State (State, get, put, modify, runState)
 import Test.Hspec
 
 -- A Rational is a ratio of two Integer values
@@ -87,8 +87,32 @@ spec = do
     join [[1, 2, 3], [4, 5, 6], [7, 8, 9]] `shouldBe` [1, 2, 3, 4, 5, 6, 7, 8, 9]
     join [[[1,2], [3,4]], [[5,6], [7,8]]] `shouldBe` [[1,2], [3,4], [5,6], [7,8]]
 
--- todo: implement examples of the following
--- io, state
--- (<*>) vs. ap
--- return
--- mapm, sequence
+  it "sequence combines a list of Just values from left to right, or returns Nothing" $ do
+    sequence [Just 1, Just 2, Just 3] `shouldBe` Just [1, 2, 3]
+    sequence [Nothing, Just 2, Just 3] `shouldBe` Nothing
+    sequence [Just 1, Just 2, Nothing] `shouldBe` Nothing
+
+  it "sequence combines a list of Right values from left to right, or returns the first Left" $ do
+    sequence [Right 1, Right 2, Right 3] `shouldBe` (Right [1, 2, 3] :: Either String [Integer])
+    sequence [Left "err", Right 2, Right 3] `shouldBe` Left "err"
+    sequence [Right 1, Right 2, Left "err"] `shouldBe` Left "err"
+    sequence [Left "err 1", Right 2, Left "err 2"] `shouldBe` Left "err 1"
+
+  it "sequence runs a set of State side-effects from left to right" $ do
+    let increment = modify (+ 1)
+        double = modify (* 2)
+
+    runState (sequence [increment, increment, double]) 3 `shouldBe` ([(), (), ()], 10)
+    runState (sequence [double, increment, increment]) 3 `shouldBe` ([(), (), ()], 8)
+
+    -- sequence_ ignores the result, only runs actions for their side-effects
+    runState (sequence_ [increment, increment, double]) 3 `shouldBe` ((), 10)
+    runState (sequence_ [double, increment, increment]) 3 `shouldBe` ((), 8)
+
+  it "mapM applies a function that produces a Maybe to a list and collects the results like sequence" $ do
+    mapM uncons [[1, 2], [3, 4, 5]] `shouldBe` Just [(1, [2]), (3, [4, 5])]
+    mapM uncons [[], [3, 4, 5]] `shouldBe` Nothing
+
+    -- mapM_ ignores the result, only runs actions for their side-effects
+    mapM_ uncons [[1, 2], [3, 4, 5]] `shouldBe` Just ()
+    mapM_ uncons [[], [3, 4, 5]] `shouldBe` Nothing
