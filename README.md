@@ -28,18 +28,18 @@ stack test --file-watch
 - [Tuples](test/TuplesSpec.hs)
 - [Flow Control](test/FlowControlSpec.hs)
 - [Maybe](test/MaybeSpec.hs)
-- Either
+- [Either](test/EitherSpec.hs)
 - [Fold and Tail Recursion](test/TypesOfLoopsSpec.hs)
-- Functor
-- Applicative
-- Monad
-- Monoid
+- [Functor](test/FunctorSpec.hs)
+- [Applicative](test/ApplicativeSpec.sh)
+- [Monad](test/MonadSpec.hs)
+- [Monoid](test/Monoid.hs)
 - Test with freer — [test](test/Maintainability/Freer/MainSpec.hs), [stubs](test/Maintainability/Freer/Stubs.hs)
 - Test with mtl — [test](test/Maintainability/MTL/MainSpec.hs), [stubs](test/Maintainability/MTL/Stubs.hs)
-- Parser Combinators
-- Validation
+- [Parser Combinators](test/ParserCombinatorSpec.hs)
+- [Validation](test/ValidationSpec.hs)
 - [List Comprehension](test/ListComprehensionSpec.hs)
-- Laziness
+- [Laziness](test/LazinessSpec.hs)
 
 ## Some possible settings for Visual Studio Code
     {
