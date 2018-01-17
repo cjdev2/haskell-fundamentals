@@ -32,3 +32,19 @@ spec = do
     map timesTwo myNumbers `shouldBe` [2,4]
     map (\x -> x * 2) myNumbers `shouldBe` [2,4]
     map (* 2) myNumbers `shouldBe` [2,4]
+
+  it "compose functions" $ do
+    let timesTwo x = x * 2
+        plusTwo x = x + 2
+        timesTwoThenPlusTwoA = \x -> plusTwo (timesTwo x)
+        plusTwoThenTimesTwoA = \x -> timesTwo (plusTwo x)
+        timesTwoThenPlusTwoB = \x -> plusTwo $ timesTwo x
+        plusTwoThenTimesTwoB = \x -> timesTwo $ plusTwo x
+        timesTwoThenPlusTwoC = plusTwo . timesTwo
+        plusTwoThenTimesTwoC = timesTwo . plusTwo
+    timesTwoThenPlusTwoA 3 `shouldBe` 8
+    plusTwoThenTimesTwoA 3 `shouldBe` 10
+    timesTwoThenPlusTwoB 3 `shouldBe` 8
+    plusTwoThenTimesTwoB 3 `shouldBe` 10
+    timesTwoThenPlusTwoC 3 `shouldBe` 8
+    plusTwoThenTimesTwoC 3 `shouldBe` 10
