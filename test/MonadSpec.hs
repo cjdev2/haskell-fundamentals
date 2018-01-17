@@ -1,5 +1,7 @@
 module MonadSpec where
 
+import Control.Monad (join)
+import Control.Monad.State (State, get, put, runState)
 import Test.Hspec
 
 -- A Rational is a ratio of two Integer values
@@ -60,9 +62,33 @@ spec = do
           pure (x, y)
     tuples `shouldBe` [(1, 2), (1, 4), (3, 2), (3, 4), (5, 2), (5, 4)]
 
+  it "state models a computation with a single mutable cell of state" $ do
+    let incrementState :: State Integer ()
+        incrementState = do
+          currentState <- get
+          let newState = currentState + 1
+          put newState
+
+        addThreeToState :: State Integer ()
+        addThreeToState = do
+          incrementState
+          incrementState
+          incrementState
+
+    runState addThreeToState 10 `shouldBe` ((), 13)
+    runState addThreeToState 42 `shouldBe` ((), 45)
+
+  it "join flattens two layers of Maybe" $ do
+    join (Just (Just True)) `shouldBe` Just True
+    join (Just (Nothing :: Maybe Bool)) `shouldBe` Nothing
+    join (Nothing :: Maybe (Maybe Bool)) `shouldBe` Nothing
+
+  it "join flattens two layers of List" $ do
+    join [[1, 2, 3], [4, 5, 6], [7, 8, 9]] `shouldBe` [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    join [[[1,2], [3,4]], [[5,6], [7,8]]] `shouldBe` [[1,2], [3,4], [5,6], [7,8]]
+
 -- todo: implement examples of the following
--- io, list, state
--- lift vs. ap
--- return, fail, guard, mzero
--- fmap, join
+-- io, state
+-- (<*>) vs. ap
+-- return
 -- mapm, sequence

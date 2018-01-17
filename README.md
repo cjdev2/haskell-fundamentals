@@ -40,6 +40,7 @@ stack test --file-watch
 - [Validation](test/ValidationSpec.hs)
 - [List Comprehension](test/ListComprehensionSpec.hs)
 - [Laziness](test/LazinessSpec.hs)
+- [Alternative](test/AlternativeSpec.hs)
 
 ## Some possible settings for Visual Studio Code
     {
