@@ -33,6 +33,7 @@ stack test --file-watch
 - [Functor](test/FunctorSpec.hs)
 - [Applicative](test/ApplicativeSpec.hs)
 - [Monad](test/MonadSpec.hs)
+- [Semigroup](test/SemigroupSpec.hs)
 - [Monoid](test/MonoidSpec.hs)
 - Test with freer — [test](test/Maintainability/Freer/MainSpec.hs), [stubs](test/Maintainability/Freer/Stubs.hs)
 - Test with mtl — [test](test/Maintainability/MTL/MainSpec.hs), [stubs](test/Maintainability/MTL/Stubs.hs)
