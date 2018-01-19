@@ -48,3 +48,15 @@ spec = do
     plusTwoThenTimesTwoB 3 `shouldBe` 10
     timesTwoThenPlusTwoC 3 `shouldBe` 8
     plusTwoThenTimesTwoC 3 `shouldBe` 10
+
+  it "surrounding an infix operator with parentheses makes it prefix" $ do
+    (1 + 2) `shouldBe` 3
+    ((+) 1 2) `shouldBe` 3
+
+  it "surrounding an infix operator with parentheses allows passing it as an argument (higher-order)" $ do
+    zipWith (\x y -> x + y) [1, 2] [3, 4] `shouldBe` [4, 6]
+    zipWith (+) [1, 2] [3, 4] `shouldBe` [4, 6]
+
+  it "surrounding a normal (prefix) identifier with backticks makes it infix" $ do
+    shouldBe True True
+    True `shouldBe` True
