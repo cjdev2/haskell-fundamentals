@@ -2,6 +2,7 @@ module MonadSpec where
 
 import Control.Monad (join)
 import Control.Monad.State (State, get, put, modify, runState)
+import Data.Foldable
 import Test.Hspec
 
 -- A Rational is a ratio of two Integer values
@@ -113,3 +114,11 @@ spec = do
     -- mapM_ ignores the result, only runs actions for their side-effects
     mapM_ uncons [[1, 2], [3, 4, 5]] `shouldBe` Just ()
     mapM_ uncons [[], [3, 4, 5]] `shouldBe` Nothing
+
+  it "traverse is the same as mapM" $ do
+    traverse uncons [[1, 2], [3, 4, 5]] `shouldBe` Just [(1, [2]), (3, [4, 5])]
+    traverse uncons [[], [3, 4, 5]] `shouldBe` Nothing
+
+    -- traverse_ ignores the result, only runs actions for their side-effects
+    traverse_ uncons [[1, 2], [3, 4, 5]] `shouldBe` Just ()
+    traverse_ uncons [[], [3, 4, 5]] `shouldBe` Nothing
