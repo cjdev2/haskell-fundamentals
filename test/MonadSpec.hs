@@ -16,9 +16,6 @@ uncons (x:xs) = Just (x, xs)
 
 spec :: Spec
 spec = do
-  it "work in progress, using vacuous test as placeholder" $ do
-    True `shouldBe` True
-
   it "divide first element by the second element with nested case...of" $ do
     let numbers = [1, 3, 5]
         quotient = case uncons numbers of
