@@ -20,9 +20,9 @@ searchAndDisplayResultAsString name =
     Nothing -> "did not find user " ++ name
   where searchResult = searchForUserNamed name
 
-data Baz = Baz (Maybe Integer)
-data Bar = Bar (Maybe Baz)
-data Foo = Foo (Maybe Bar)
+newtype Baz = Baz (Maybe Integer)
+newtype Bar = Bar (Maybe Baz)
+newtype Foo = Foo (Maybe Bar)
 
 withPatternMatch :: Maybe Foo -> Maybe Integer
 withPatternMatch maybeFoo =
