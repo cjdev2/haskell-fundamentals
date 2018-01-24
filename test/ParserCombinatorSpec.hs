@@ -30,7 +30,10 @@ elementP = DevonString <$> stringP
     unquotedStringP = T.pack <$> some (satisfy (notInClass (whitespaceClass ++ structuralClass)))
 
     quotedStringP :: Parser T.Text
-    quotedStringP = char '\'' *> (T.pack <$> many (satisfy (notInClass "'"))) <* char '\''
+    quotedStringP = char '\'' *> (T.pack <$> many quotedStringCharP) <* char '\''
+
+    quotedStringCharP :: Parser Char
+    quotedStringCharP = satisfy (notInClass "'") <|> ('\'' <$ string "''")
 
     whitespaceClass, structuralClass :: [Char]
     whitespaceClass = "\t\n\r "
@@ -71,3 +74,7 @@ spec = do
 
   it "simple array" $ do
     parseDevon "[string 'quoted string' ()]" `shouldBe` ([DevonArray [DevonString "string", DevonString "quoted string", DevonNull]], Nothing)
+    parseDevon "[ string'quoted string'() ]" `shouldBe` ([DevonArray [DevonString "string", DevonString "quoted string", DevonNull]], Nothing)
+
+  it "string with quote in it" $ do
+    parseDevon "'Sean''s favorite format'" `shouldBe` ([DevonString "Sean's favorite format"], Nothing)
