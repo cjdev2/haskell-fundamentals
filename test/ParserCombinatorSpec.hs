@@ -19,9 +19,10 @@ data Devon
 
 elementP :: Parser Devon
 elementP = DevonString <$> stringP
+       <|> (DevonNull <$ string "()")
   where
     stringP :: Parser T.Text
-    stringP = unquotedStringP <|> quotedStringP
+    stringP = unquotedStringP <|> quotedStringP <?> "string"
 
     unquotedStringP :: Parser T.Text
     unquotedStringP = T.pack <$> some (satisfy (notInClass (whitespaceClass ++ structuralClass)))
@@ -56,3 +57,6 @@ spec = do
 
   it "quoted string" $ do
     parseDevon "'Hello, haskell!'" `shouldBe` ([DevonString "Hello, haskell!"], Nothing)
+
+  it "null" $ do
+    parseDevon "()" `shouldBe` ([DevonNull], Nothing)
