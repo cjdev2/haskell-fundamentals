@@ -7,6 +7,7 @@ import qualified Data.Text as T
 
 import Control.Applicative ((<|>), many, some)
 import Data.Attoparsec.Text
+import Data.Functor (void)
 import Data.Semigroup ((<>))
 import Test.Hspec
 
@@ -19,7 +20,8 @@ data Devon
 
 elementP :: Parser Devon
 elementP = DevonString <$> stringP
-       <|> (DevonNull <$ string "()")
+       <|> (DevonNull <$ string "()" <?> "null")
+       <|> DevonArray <$> devonArrayP
   where
     stringP :: Parser T.Text
     stringP = unquotedStringP <|> quotedStringP <?> "string"
@@ -33,6 +35,12 @@ elementP = DevonString <$> stringP
     whitespaceClass, structuralClass :: [Char]
     whitespaceClass = "\t\n\r "
     structuralClass = "'()[]{}"
+
+    whitespaceP :: Parser ()
+    whitespaceP = void $ many (satisfy (inClass whitespaceClass))
+
+    devonArrayP :: Parser [Devon]
+    devonArrayP = char '[' *> whitespaceP *> many (elementP <* whitespaceP) <* char ']' <?> "array"
 
 parseDevon :: T.Text -> ([Devon], Maybe T.Text)
 parseDevon txt = case parseStep txt of
@@ -60,3 +68,6 @@ spec = do
 
   it "null" $ do
     parseDevon "()" `shouldBe` ([DevonNull], Nothing)
+
+  it "simple array" $ do
+    parseDevon "[string 'quoted string' ()]" `shouldBe` ([DevonArray [DevonString "string", DevonString "quoted string", DevonNull]], Nothing)
