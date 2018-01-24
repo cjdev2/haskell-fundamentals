@@ -16,12 +16,13 @@ data Devon
   | DevonString T.Text
   | DevonArray [Devon]
   | DevonMap (M.Map Devon Devon)
-  deriving (Eq, Show)
+  deriving (Eq, Ord, Show)
 
 elementP :: Parser Devon
 elementP = DevonString <$> stringP
        <|> (DevonNull <$ string "()" <?> "null")
        <|> DevonArray <$> devonArrayP
+       <|> DevonMap <$> devonMapP
   where
     stringP :: Parser T.Text
     stringP = unquotedStringP <|> quotedStringP <?> "string"
@@ -45,6 +46,15 @@ elementP = DevonString <$> stringP
     devonArrayP :: Parser [Devon]
     devonArrayP = char '[' *> whitespaceP *> many (elementP <* whitespaceP) <* char ']' <?> "array"
 
+    devonMapP :: Parser (M.Map Devon Devon)
+    devonMapP = char '{' *> whitespaceP *> (M.fromList <$> pairsP) <* char '}' <?> "map"
+
+    pairsP :: Parser [(Devon, Devon)]
+    pairsP = many (pairP <* whitespaceP)
+
+    pairP :: Parser (Devon, Devon)
+    pairP = (,) <$> (elementP <* whitespaceP) <*> elementP
+
 parseDevon :: T.Text -> ([Devon], Maybe T.Text)
 parseDevon txt = case parseStep txt of
     Left msg -> ([], Just msg)
@@ -56,7 +66,7 @@ parseDevon txt = case parseStep txt of
     parseStep :: T.Text -> Either T.Text (Devon, T.Text)
     parseStep unconsumedInput = handleResult (parse elementP unconsumedInput)
       where
-        handleResult (Fail _ expected unexpected) = Left ("expected: " <> mconcat (map T.pack expected) <> ", failed with: " <> T.pack unexpected)
+        handleResult (Fail _ expected unexpected) = Left ("expected: " <> T.intercalate ", " (map T.pack expected) <> ", failed with: " <> T.pack unexpected)
         handleResult (Partial f) = handleResult (f "")
         handleResult (Done remainingInput result) = Right (result, remainingInput)
 
@@ -81,3 +91,6 @@ spec = do
 
   it "empty string" $ do
     parseDevon "''" `shouldBe` ([DevonString ""], Nothing)
+
+  it "map" $ do
+    parseDevon "{a 1 b 2}" `shouldBe` ([DevonMap (M.fromList [(DevonString "a", DevonString "1"), (DevonString "b", DevonString "2")])], Nothing)
