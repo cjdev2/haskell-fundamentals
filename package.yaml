@@ -33,6 +33,7 @@ dependencies:
 - text
 - time
 - transformers
+- attoparsec
 
 library:
   source-dirs: src
