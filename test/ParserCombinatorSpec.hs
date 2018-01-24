@@ -94,3 +94,8 @@ spec = do
 
   it "map" $ do
     parseDevon "{a 1 b 2}" `shouldBe` ([DevonMap (M.fromList [(DevonString "a", DevonString "1"), (DevonString "b", DevonString "2")])], Nothing)
+
+  it "be paranoid about edge cases" $ do
+    parseDevon "[{a 1}]"   `shouldBe` ([DevonArray [DevonMap (M.fromList [(DevonString "a", DevonString "1")])]], Nothing)
+    parseDevon "[[a]]"     `shouldBe` ([DevonArray [DevonArray [DevonString "a"]]], Nothing)
+    parseDevon "{[a b] 1}" `shouldBe` ([DevonMap (M.fromList [(DevonArray [DevonString "a", DevonString "b"], DevonString "1")])], Nothing)
