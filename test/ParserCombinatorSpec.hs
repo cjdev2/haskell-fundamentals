@@ -78,3 +78,6 @@ spec = do
 
   it "string with quote in it" $ do
     parseDevon "'Sean''s favorite format'" `shouldBe` ([DevonString "Sean's favorite format"], Nothing)
+
+  it "empty string" $ do
+    parseDevon "''" `shouldBe` ([DevonString ""], Nothing)
