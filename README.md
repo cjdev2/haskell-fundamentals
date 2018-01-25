@@ -43,6 +43,15 @@ stack test --file-watch
 - [List Comprehension](test/ListComprehensionSpec.hs)
 - [Laziness](test/LazinessSpec.hs)
 
+## Quick Facts
+- Applicative is subclass of Functor
+- Alternative is subclass of Applicative
+- Monad is a subclass of Applicative
+- MonadPlus is a subclass of both Alternative and Monad
+- Monoid is a subclass of Semigroup
+
+
+
 ## Some possible settings for Visual Studio Code
     {
       "window.zoomLevel": 2,
@@ -50,3 +59,4 @@ stack test --file-watch
       "editor.detectIndentation": false,
       "files.trimTrailingWhitespace": true
     }
+
