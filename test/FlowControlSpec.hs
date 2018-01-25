@@ -1,3 +1,5 @@
+{-# LANGUAGE MultiWayIf #-}
+
 module FlowControlSpec where
 
 import Test.Hspec
@@ -55,3 +57,40 @@ spec = do
 
     integerPlusOneOrZeroFunction (Just 42) `shouldBe` 43
     integerPlusOneOrZeroFunction Nothing `shouldBe` 0
+
+  it "guards on functions" $ do
+    let sign x
+          | x < 0 = -1
+          | x > 0 = 1
+          | otherwise = 0
+    sign (-5) `shouldBe` -1
+    sign 0 `shouldBe` 0
+    sign 5 `shouldBe` 1
+
+  it "guards on case...of" $ do
+    let sign x = case x of
+          n | x < 0 -> -1
+            | x > 0 -> 1
+            | otherwise -> 0
+    sign (-5) `shouldBe` -1
+    sign 0 `shouldBe` 0
+    sign 5 `shouldBe` 1
+
+  it "pattern-matching plus guards" $ do
+    let signMaybe (Just x)
+          | x < 0 = -1
+          | x > 0 = 1
+          | otherwise = 0
+        signMaybe Nothing = 0
+    signMaybe (Just (-5)) `shouldBe` -1
+    signMaybe (Just 0) `shouldBe` 0
+    signMaybe (Just 5) `shouldBe` 1
+    signMaybe Nothing `shouldBe` 0
+
+  it "guards using multi-way if" $ do
+    let sign x = if | x < 0 -> -1
+                    | x > 0 -> 1
+                    | otherwise -> 0
+    sign (-5) `shouldBe` -1
+    sign 0 `shouldBe` 0
+    sign 5 `shouldBe` 1
