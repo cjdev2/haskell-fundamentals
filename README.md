@@ -68,7 +68,7 @@ stack test --file-watch
     >=>   left-to-right monadic composition
     <=<   right-to-left monadic composition
     <|>   alternative or
-
+    <-    bind (when used in do block)
 
 ## Some possible settings for Visual Studio Code
     {
