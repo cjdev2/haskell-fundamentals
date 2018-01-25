@@ -37,11 +37,11 @@ stack test --file-watch
 - [Monoid](test/MonoidSpec.hs)
 - Test with freer — [test](test/Maintainability/Freer/MainSpec.hs), [stubs](test/Maintainability/Freer/Stubs.hs)
 - Test with mtl — [test](test/Maintainability/MTL/MainSpec.hs), [stubs](test/Maintainability/MTL/Stubs.hs)
+- [Alternative](test/AlternativeSpec.hs)
 - [Parser Combinators](test/ParserCombinatorSpec.hs)
 - [Validation](test/ValidationSpec.hs)
 - [List Comprehension](test/ListComprehensionSpec.hs)
 - [Laziness](test/LazinessSpec.hs)
-- [Alternative](test/AlternativeSpec.hs)
 
 ## Some possible settings for Visual Studio Code
     {
