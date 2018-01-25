@@ -21,6 +21,13 @@ Learning project for haskell
 ## How to set up test monitoring
 stack test --file-watch
 
+## Language Extensions
+- for example, to turn on overloaded strings
+- in file
+    - {-# LANGUAGE OverloadedStrings #-}
+- in ghci
+    - :set -XOverloadedStrings
+
 ## Fundamentals explained through sample code
 - [Functions](test/FunctionSpec.hs)
 - [Data](test/DataSpec.hs)
