@@ -28,7 +28,6 @@ stack test --file-watch
 - [Tuples](test/TuplesSpec.hs)
 - [Flow Control](test/FlowControlSpec.hs)
 - [Maybe](test/MaybeSpec.hs)
-- [Either](test/EitherSpec.hs)
 - [Fold and Tail Recursion](test/TypesOfLoopsSpec.hs)
 - [Functor](test/FunctorSpec.hs)
 - [Applicative](test/ApplicativeSpec.hs)
