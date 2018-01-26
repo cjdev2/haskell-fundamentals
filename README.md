@@ -56,6 +56,41 @@ stack test --file-watch
 - MonadPlus is a subclass of both Alternative and Monad
 - Monoid is a subclass of Semigroup
 
+## Data Types
+- Bool
+    - an enumeration of True and False
+- Char
+    - A unicode code point between 0 and 1114111 (17 planes with 2^16 code points per plane = 1114112)
+- String
+    - A list of characters
+- Data.Text
+    - Capabilities of a string, without the performance issues of a singly linked list
+- List
+    - represented with brackets [,]
+    - a singly linked list
+- Tuple
+    - represented with parenthesis (,)
+    - an algebraic data type whose members are accessed by position but not name
+    - the larger the tuple, the less likely there exists language and library support
+    - library support up to size 7
+    - languange support up to size 15
+- Unit
+    - represented as ()
+    - a type with only a single value
+    - useful when the return value does not matter
+- IO
+    - an operation whose behavior is not determined by the program, but rather the environment within which the program is run (for example, the operating system)
+- Integer
+    - An arbitrary precision integer
+- Int
+    - A fixed precison integer, 30 bits of precision guaranteed, most likely matches your machine's word size
+- Float
+    - IEEE 754 single precision floating point
+- Double
+    - IEEE 754 double precision floating point
+- Rational
+    - A ratio of Integers
+
 ## Symbol Guide
 
     $     function application (used to avoid parentheses)
