@@ -64,7 +64,7 @@ stack test --file-watch
 - String
     - A list of Char
 - Data.Text
-    - Capabilities of a String, without the performance issues of a singly linked list
+    - Capabilities of a String, without the performance limitations of a singly linked list
 - List
     - represented with brackets [,]
     - a singly linked list
