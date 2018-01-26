@@ -13,12 +13,13 @@ import Data.Semigroup ((<>))
 import Data.Time.Clock (diffUTCTime, getCurrentTime)
 import System.Environment (getArgs)
 
+-- stack runhaskell src/Maintainability/Unmaintainable/Main.hs hello-target.txt
 main :: IO ()
 main = do
   startTime <- getCurrentTime
   [fileName] <- getArgs
   target <- T.readFile fileName
-  T.putStrLn $ "Hello, " <> target <> "!"
+  T.putStrLn $ "Hello, " <> (T.strip target) <> "!"
   endTime <- getCurrentTime
   let duration = endTime `diffUTCTime` startTime
-  T.putStrLn $ T.pack (show (round (duration * 1000) :: Integer)) <> " milliseconds"
+  T.putStrLn $ T.pack (show (round (duration * 1000 * 1000) :: Integer)) <> " microseconds"
