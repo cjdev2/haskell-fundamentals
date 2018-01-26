@@ -72,8 +72,7 @@ stack test --file-watch
     - represented with parenthesis (,)
     - an algebraic data type whose members are accessed by position but not name
     - the larger the tuple, the less likely there exists language and library support
-    - library support up to size 7
-    - languange support up to size 15
+    - languange guarantees support of at least size 15,
 - Unit
     - represented as ()
     - a type with only a single value
