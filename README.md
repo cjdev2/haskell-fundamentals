@@ -10,11 +10,13 @@ Learning project for haskell
     - higher-order functions
     - combinators
     - abstractions should compose
-    - domain specific
+    - can be domain specific
 - ...mostly small.
     - prefer lots of little functions
     - build programs out of small pieces
     - rethink “single responsibility”
+        - instead of grouping functions by domain as you would in Object Oriented Programming
+        - try to make functions more generic so that they can be decoupled from the domain
 
 ## How this project was created
 - brew install haskell-stack
