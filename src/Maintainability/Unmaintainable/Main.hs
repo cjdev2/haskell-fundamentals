@@ -19,7 +19,7 @@ main = do
   startTime <- getCurrentTime
   [fileName] <- getArgs
   target <- T.readFile fileName
-  T.putStrLn $ "Hello, " <> (T.strip target) <> "!"
+  T.putStrLn $ "Hello, " <> target <> "!"
   endTime <- getCurrentTime
   let duration = endTime `diffUTCTime` startTime
   T.putStrLn $ T.pack (show (round (duration * 1000 * 1000) :: Integer)) <> " microseconds"
