@@ -60,11 +60,11 @@ stack test --file-watch
 - Bool
     - an enumeration of True and False
 - Char
-    - A unicode code point between 0 and 1114111 (17 planes with 2^16 code points per plane = 1114112)
+    - a unicode code point between 0 and 1114111 (17 planes with 2^16 code points per plane = 1114112)
 - String
-    - A list of Char
+    - a list of Char
 - Data.Text
-    - Capabilities of a String, without the performance limitations of a singly linked list
+    - capabilities of a String, without the performance limitations of a singly linked list
 - List
     - represented with brackets [,]
     - a singly linked list
@@ -80,15 +80,15 @@ stack test --file-watch
 - IO
     - an operation whose behavior is not determined by the program, but rather the environment within which the program is run (for example, the operating system)
 - Integer
-    - An arbitrary precision integer
+    - an arbitrary precision integer
 - Int
-    - A fixed precison integer, 30 bits of precision guaranteed, most likely matches your environment's word size
+    - a fixed precison integer, 30 bits of precision guaranteed, most likely matches your environment's word size
 - Float
     - IEEE 754 single precision floating point
 - Double
     - IEEE 754 double precision floating point
 - Rational
-    - A ratio of Integers
+    - a ratio of Integers
 
 ## Symbol Guide
 
