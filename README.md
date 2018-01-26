@@ -1,6 +1,21 @@
 # Haskell Fundamentals
 Learning project for haskell
 
+## [Think Functionally](http://gitlab.cj.com/jaking/think-functionally-talk)
+- Write functions...
+    - not methods
+    - not classes
+    - not procedures
+- ...that compose...
+    - higher-order functions
+    - combinators
+    - abstractions should compose
+    - domain specific
+- ...mostly small.
+    - prefer lots of little functions
+    - build programs out of small pieces
+    - rethink “single responsibility”
+
 ## How this project was created
 - brew install haskell-stack
 - stack new haskell-fundamentals
