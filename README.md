@@ -62,9 +62,9 @@ stack test --file-watch
 - Char
     - A unicode code point between 0 and 1114111 (17 planes with 2^16 code points per plane = 1114112)
 - String
-    - A list of characters
+    - A list of Char
 - Data.Text
-    - Capabilities of a string, without the performance issues of a singly linked list
+    - Capabilities of a String, without the performance issues of a singly linked list
 - List
     - represented with brackets [,]
     - a singly linked list
@@ -83,7 +83,7 @@ stack test --file-watch
 - Integer
     - An arbitrary precision integer
 - Int
-    - A fixed precison integer, 30 bits of precision guaranteed, most likely matches your machine's word size
+    - A fixed precison integer, 30 bits of precision guaranteed, most likely matches your environment's word size
 - Float
     - IEEE 754 single precision floating point
 - Double
