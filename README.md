@@ -127,6 +127,7 @@ stack test --file-watch
     <=<   right-to-left monadic composition
     <|>   alternative or
     <-    bind (when used in do block)
+    ~     type equality constraint
 
 ## Some possible settings for Visual Studio Code
     {
@@ -135,4 +136,3 @@ stack test --file-watch
       "editor.detectIndentation": false,
       "files.trimTrailingWhitespace": true
     }
-
