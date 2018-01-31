@@ -13,7 +13,7 @@ import Maintainability.Freer.Stubs
 spec :: Spec
 spec = describe "main" $ do
   let epoch = posixSecondsToUTCTime 0
-      ((), logMessages) = run $ main
+      ((), logMessages) = run $ mainLogic
         & runArgumentsPure ["sample.txt"]
         & runFileSystemPure [("sample.txt", "Alyssa")]
         & runLogPure

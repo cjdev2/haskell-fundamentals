@@ -13,7 +13,7 @@ import Maintainability.MTL.Stubs
 spec :: Spec
 spec = describe "main" $ do
   let epoch = posixSecondsToUTCTime 0
-      ((), logMessages) = runIdentity $ main
+      ((), logMessages) = runIdentity $ mainLogic
         & runArgumentsT ["sample.txt"]
         & runFileSystemT [("sample.txt", "Alyssa")]
         & runLoggerT
