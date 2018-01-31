@@ -3,7 +3,7 @@
 
 module Maintainability.Freer.Main
   ( main
-  , mainIO
+  , mainLogic
   ) where
 
 import qualified Data.Text as T
@@ -20,8 +20,8 @@ import Maintainability.Freer.Effects
 --------------------------------------------------------------------------------
 -- IO wiring
 
-mainIO :: IO ()
-mainIO = runM $ main
+main :: IO ()
+main = runM $ mainLogic
   & runArgumentsIO
   & runFileSystemIO
   & runLogIO
@@ -30,8 +30,8 @@ mainIO = runM $ main
 --------------------------------------------------------------------------------
 -- Logic
 
-main :: Members '[Arguments, FileSystem, Log, Time] r => Eff r ()
-main = do
+mainLogic :: Members '[Arguments, FileSystem, Log, Time] r => Eff r ()
+mainLogic = do
   startTime <- currentTime
   [fileName] <- getArgs
   target <- readFile fileName

@@ -1,10 +1,12 @@
+-- stack runhaskell -- -isrc src/Maintainability/MTL/Main.hs hello-target.txt
+
 {-# LANGUAGE DeriveFunctor #-}
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
 {-# LANGUAGE OverloadedStrings #-}
 
 module Maintainability.MTL.Main
   ( main
-  , mainIO
+  , mainLogic
   ) where
 
 import qualified Data.Text as T
@@ -28,14 +30,14 @@ newtype AppM a = AppM (LoggingT IO a)
 runAppM :: AppM a -> IO a
 runAppM (AppM x) = runStderrLoggingT x
 
-mainIO :: IO ()
-mainIO = runAppM main
+main :: IO ()
+main = runAppM mainLogic
 
 --------------------------------------------------------------------------------
 -- Logic
 
-main :: (MonadArguments m, MonadFileSystem m, MonadLogger m, MonadTime m) => m ()
-main = do
+mainLogic :: (MonadArguments m, MonadFileSystem m, MonadLogger m, MonadTime m) => m ()
+mainLogic = do
   startTime <- currentTime
   [fileName] <- getArgs
   target <- readFile fileName

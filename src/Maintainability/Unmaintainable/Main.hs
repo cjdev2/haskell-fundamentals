@@ -1,3 +1,5 @@
+-- stack runhaskell src/Maintainability/Unmaintainable/Main.hs hello-target.txt
+
 {-# LANGUAGE OverloadedStrings #-}
 
 module Maintainability.Unmaintainable.Main
@@ -13,7 +15,6 @@ import Data.Semigroup ((<>))
 import Data.Time.Clock (diffUTCTime, getCurrentTime)
 import System.Environment (getArgs)
 
--- stack runhaskell src/Maintainability/Unmaintainable/Main.hs hello-target.txt
 main :: IO ()
 main = do
   startTime <- getCurrentTime
