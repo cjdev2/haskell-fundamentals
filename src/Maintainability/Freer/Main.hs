@@ -1,3 +1,5 @@
+-- stack runhaskell -- -isrc src/Maintainability/Freer/Main.hs hello-target.txt
+
 {-# LANGUAGE DataKinds #-}
 {-# LANGUAGE OverloadedStrings #-}
 
