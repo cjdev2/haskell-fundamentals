@@ -40,4 +40,4 @@ mainLogic = do
   log $ "Hello, " <> target <> "!"
   endTime <- currentTime
   let duration = endTime `diffUTCTime` startTime
-  log $ T.pack (show (round (duration * 1000) :: Integer)) <> " milliseconds"
+  log $ T.pack (show (round (duration * 1000 * 1000) :: Integer)) <> " microseconds"
