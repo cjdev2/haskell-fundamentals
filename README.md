@@ -128,6 +128,7 @@ stack test --file-watch
     <|>   alternative or
     <-    bind (when used in do block)
     ~     type equality constraint
+    =>    is a constraint on
 
 ## Some possible settings for Visual Studio Code
     {
