@@ -129,6 +129,7 @@ stack test --file-watch
     <-    bind (when used in do block)
     ~     type equality constraint
     =>    is a constraint on
+    ~>    natural transformation
 
 ## Some possible settings for Visual Studio Code
     {
