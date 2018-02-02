@@ -66,6 +66,9 @@ stack test --file-watch
 - [List Comprehension](test/ListComprehensionSpec.hs)
 - [Laziness](test/LazinessSpec.hs)
 
+## Step by step guide to freer and mtl examples
+- [Prototypes](src/Maintainability/Prototypes)
+
 ## Quick Facts
 - Applicative is subclass of Functor
 - Alternative is subclass of Applicative
