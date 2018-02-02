@@ -5,7 +5,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE TypeOperators #-}
 
-module Maintainability.A_05_refactor_console_output
+module Maintainability.Prototypes.A_05_refactor_console_output
   ( main
   ) where
 

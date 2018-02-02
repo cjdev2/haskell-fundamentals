@@ -5,7 +5,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE TypeOperators #-}
 
-module Maintainability.A_02_refactor_time
+module Maintainability.Prototypes.A_02_refactor_time
   ( main
   ) where
 

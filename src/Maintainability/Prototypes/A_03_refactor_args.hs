@@ -5,7 +5,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE TypeOperators #-}
 
-module Maintainability.A_03_refactor_args
+module Maintainability.Prototypes.A_03_refactor_args
   ( main
   ) where
 

@@ -5,7 +5,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE TypeOperators #-}
 
-module Maintainability.A_00_prepare_for_freer
+module Maintainability.Prototypes.A_01_prepare_for_freer
   ( main
   ) where
 

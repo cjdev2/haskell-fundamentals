@@ -5,7 +5,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE TypeOperators #-}
 
-module Maintainability.A_04_refactor_file_system
+module Maintainability.Prototypes.A_04_refactor_file_system
   ( main
   ) where
 
