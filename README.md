@@ -141,3 +141,6 @@ stack test --file-watch
       "editor.detectIndentation": false,
       "files.trimTrailingWhitespace": true
     }
+    
+## Helpful Links
+[The State of Haskell in 2018](https://lexi-lambda.github.io/blog/2018/02/10/an-opinionated-guide-to-haskell-in-2018/)
