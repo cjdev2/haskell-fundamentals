@@ -69,6 +69,11 @@ stack test --file-watch
 ## Step by step guide to freer and mtl examples
 - [Prototypes](src/Maintainability/Prototypes)
 
+## Tooling
+### Hoogle
+Hoogle is a search engine for haskell packages. There is a hosted version at  
+[hoogle.haskell.org](http://hoogle.haskell.org). You can also set up a local index. [Instructions here](http://cjpad.cj.com/hoogle)
+
 ## Quick Facts
 - Applicative is subclass of Functor
 - Alternative is subclass of Applicative
