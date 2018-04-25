@@ -1,7 +1,7 @@
 # Haskell Fundamentals
 Learning project for haskell
 
-## [Think Functionally](http://gitlab.cj.com/jaking/think-functionally-talk)
+## Think Functionally
 - Write functions...
     - not methods
     - not classes
